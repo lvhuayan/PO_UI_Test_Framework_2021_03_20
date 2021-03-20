@@ -13,7 +13,7 @@ from common.log_utils import logutils
 
 class BasePage:
     def __init__(self,driver):
-        self.driver=driver
+        self.driver=webdriver.Chrome   #driver
 
     def open_url(self,url):
         self.driver.get(url)
@@ -59,3 +59,36 @@ class BasePage:
         element=self.find_element(element_info)
         element.click()
         logutils.info('【%s】元素进行点击操作'%element_info['element_name'])
+
+
+    #frame封装
+    #思路一
+    def switch_to_frame(self,element_info):
+        element=self.find_element(element_info)
+        self.driver.switch_to.frame(element)
+
+    # 思路二
+    def switch_to_frame_id_or_name(self,id_or_name):
+        self.driver.switch_to.frame(id_or_name)
+
+    #selenium执行js
+    def execute_script(self,js_str,element_info=None):
+        if element_info:
+            self.driver.execute_script(js_str)
+        else:
+            self.driver.execute_script(js_str,None)
+
+    #使用了了封装的execute_script()方法
+    def __delete_element_attribute(self,element_info,attribute_name):
+        element=self.find_element(element_info)
+        self.execute_script('arguments[0].removeAttribute("%s");'%attribute_name,element)
+
+    # 未使用封装的execute_script()方法
+    def delete_element_attribute(self,element_info,attribute_name):
+        element=self.find_element(element_info)
+        self.driver.execute_script('arguments[0].removeAttribute("%s");'%attribute_name, element)
+
+    def update_element_attribute(self,element_info,attribute_name,attribute_value):
+        element=self.find_element(element_info)
+        self.driver.execute_script('arguments[0].setAttribute("%s","%s");'%(attribute_name,attribute_value), element)
+
