@@ -44,4 +44,10 @@ if __name__=='__main__':
     print(companyname)
     username=main_page.get_username()
     print(username)
+    #增加以下两句代码后出现了一个问题，
+    #问题原因：
+    #线性脚本 操作一个元素再去识别下一个元素
+    #目前版本的PO模式，是实例化页面对象之后，识别所有的元素，然后再去操作，可能发生元素不能识别
+    main_page.goto_myzone()
+    main_page.goto_product()
 
