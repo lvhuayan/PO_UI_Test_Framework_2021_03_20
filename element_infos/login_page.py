@@ -7,6 +7,7 @@
 import os
 from selenium import webdriver
 from common.base_page import BasePage
+from common.browser import Browser
 from common.element_data_utils import ElementDataUtils
 
 class LoginPage(BasePage):
@@ -43,9 +44,7 @@ class LoginPage(BasePage):
         self.click(self.login_button)
 
 if __name__=='__main__':
-    current_path = os.path.dirname(__file__)
-    driver_path = os.path.join(current_path, '../webdriver/chromedriver.exe')
-    driver=webdriver.Chrome(executable_path=driver_path)
+    driver=Browser().get_driver()
     login_page=LoginPage(driver)
     login_page.open_url('http://47.107.178.45/zentao/www/index.php?m=user&f=login')
     login_page.input_username('test01')
