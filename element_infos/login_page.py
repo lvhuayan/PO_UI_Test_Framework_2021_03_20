@@ -1,12 +1,7 @@
-#!/usr/bin/env python
-# encoding:utf-8
-# @author: lvhuayan
-# @file: login_page.py
-# @time: 2021/3/16 13:33
-# @desc:
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from common.log_utils import logutils
 
 current_path=os.path.dirname(__file__)
 driver_path=os.path.join(current_path,'../webdriver/chromedriver.exe')
@@ -23,12 +18,15 @@ class LoginPage:
 
     def input_username(self,username): #输入用户名  #方法==》控件的操作
         self.username_inputbox.send_keys(username)
+        logutils.info('用户名输入框输入%s：'%username)
 
     def input_password(self,password):#输入密码
         self.password_inputbox.send_keys(password)
+        logutils.info('密码输入框输入了：%s'%password)
 
     def click_login(self):#点击登录
         self.login_button.click()
+        logutils.info('点击登录按钮')
 
 if __name__=='__main__':
     login_page=LoginPage()
