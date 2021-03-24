@@ -32,7 +32,7 @@ class Browser:
         chrome_options.add_argument('--disable-gpu') #谷歌文档提到需要加上这个属性来规避bug
         chrome_options.add_argument('lang=zh_CN.UTF-8') #设置默认编码为UTF-8
         chrome_options.add_experimental_option('useAutomationExtension', False)# 屏蔽谷歌浏览器正在接收自动化软件控制提示
-        chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])#设置开发者模式启动，该模式下webdriver属性为正常值
+        chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])# 屏蔽谷歌浏览器正在接收自动化软件控制提示
         chrome_driver_path=os.path.join(self.__driver_path,'chromedriver.exe')
         driver = webdriver.Chrome(options=chrome_options,executable_path=chrome_driver_path)
         return driver

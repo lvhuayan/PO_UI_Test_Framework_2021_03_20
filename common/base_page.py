@@ -5,15 +5,17 @@
 # @time: 2021/3/16 21:57
 # @desc:
 import os
+import time
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-
+from common.config_utils import Config
 from common.log_utils import logutils
 
 class BasePage:
     def __init__(self,driver):
-        self.driver=webdriver.Chrome   #driver
+        self.driver=driver  #webdriver.Chrome
 
     def open_url(self,url):
         self.driver.get(url)
@@ -92,3 +94,9 @@ class BasePage:
         element=self.find_element(element_info)
         self.driver.execute_script('arguments[0].setAttribute("%s","%s");'%(attribute_name,attribute_value), element)
 
+
+    def implicitly_wait(self,seconds=Config.get_time_out):
+        self.driver.implicitly_wait(seconds)
+
+    def wait_time(self,seconds=Config.get_time_out):
+        time.sleep(seconds)

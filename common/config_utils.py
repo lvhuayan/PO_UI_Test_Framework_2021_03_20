@@ -33,6 +33,10 @@ class CongfigUtlis():
     def get_driver_name(self):
         return self.read_ini('default','driver_name')
 
+    @property
+    def get_time_out(self):
+        return float(self.read_ini('default','time_out'))
+
 Config=CongfigUtlis()
 
 if __name__=='__main__':

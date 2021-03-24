@@ -29,11 +29,11 @@ class LoginPage(BasePage):
         #                         'locator_value':'//button[@id="submit"]',
         #                         'timeout':3
         #                         }
-        elements=ElementDataUtils('login_page').get_element()
+        elements=ElementDataUtils('login','login_page').get_element()
         self.username_inputbox=elements['username_inputbox']
         self.password_inputbox=elements['password_inputbox']
         self.login_button=elements['login_button']
-        self.bug_link=elements['bug_link']
+        # self.bug_link=elements['bug_link']
 
     def bug_link_click(self,but_title):
         self.bug_link=self.bug_link.locator_value%but_title
