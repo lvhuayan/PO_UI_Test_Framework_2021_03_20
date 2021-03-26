@@ -37,6 +37,22 @@ class CongfigUtlis():
     def get_time_out(self):
         return float(self.read_ini('default','time_out'))
 
+    @property
+    def get_screenshot_path(self):
+        return self.read_ini('default','screenshot_path')
+
+    @property
+    def get_username(self):
+        return self.read_ini('default','username')
+
+    @property
+    def get_password(self):
+        return self.read_ini('default','password')
+
+    @property
+    def get_url(self):
+        return self.read_ini('default','url')
+
 Config=CongfigUtlis()
 
 if __name__=='__main__':

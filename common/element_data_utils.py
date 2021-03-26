@@ -16,7 +16,7 @@ class ElementDataUtils:
     def __init__(self,modul_name,page_name,element_path=excel_path):
         self.element_path=element_path
         self.page_name=page_name
-        self.workbook = xlrd.open_workbook(excel_path)
+        self.workbook = xlrd.open_workbook(element_path)
         self.sheet = self.workbook.sheet_by_name(modul_name)
         self.nrow = self.sheet.nrows
 

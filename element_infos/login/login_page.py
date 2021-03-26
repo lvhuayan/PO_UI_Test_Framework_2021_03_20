@@ -36,7 +36,7 @@ class LoginPage(BasePage):
         # self.bug_link=elements['bug_link']
 
     def bug_link_click(self,but_title):
-        self.bug_link=self.bug_link.locator_value%but_title
+        self.bug_link['locator_value']=self.bug_link['locator_value']%but_title
         self.click(self.bug_link)
 
 
@@ -49,6 +49,9 @@ class LoginPage(BasePage):
     def click_login(self):#点击登录
         self.click(self.login_button)
 
+    def get_login_fail_alert_content(self):
+        return self.switch_to_alert()
+
 if __name__=='__main__':
     driver=Browser().get_driver()
     login_page=LoginPage(driver)
@@ -56,3 +59,4 @@ if __name__=='__main__':
     login_page.input_username('test01')
     login_page.input_password('newdream123')
     login_page.click_login()
+    login_page.screenshot_as_file()

@@ -6,7 +6,7 @@
 # @desc:
 from selenium.webdriver.common.by import By
 from common.log_utils import logutils
-from element_infos.login_page import LoginPage
+from element_infos.login.login_page import LoginPage
 
 class MainPage:
     def __init__(self):
