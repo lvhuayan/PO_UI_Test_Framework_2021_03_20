@@ -20,7 +20,7 @@ current_path=os.path.dirname(__file__)
 
 class BasePage:
     def __init__(self,driver):
-        self.driver=webdriver.Chrome()   #webdriver.Chrome()  driver
+        self.driver=driver   #webdriver.Chrome()  driver
 
     def open_url(self,url):
         self.driver.get(url)

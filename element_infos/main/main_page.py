@@ -1,50 +1,43 @@
 #!/usr/bin/env python
 # encoding:utf-8
 # @author: lvhuayan
-# @file: base_page.py
-# @time: 2021/3/16 14:03
+# @file: main_page.py
+# @time: 2021/3/27 16:50
 # @desc:
-from selenium.webdriver.common.by import By
-from common.log_utils import logutils
-from element_infos.login.login_page import LoginPage
+# from actions.login_action import LoginAction
+from common.base_page import BasePage
+from common.browser import Browser
+from common.element_data_utils import ElementDataUtils
 
-class MainPage:
-    def __init__(self):
-        self.login_page=LoginPage()
-        self.login_page.input_username('test01')
-        self.login_page.input_password('newdream123')
-        self.login_page.click_login()
-        self.companyname_showbox=self.login_page.driver.find_element(By.XPATH,'//h1[@id="companyname"]')
-        self.myzone_menu=self.login_page.driver.find_element(By.XPATH,'//li[@data-id="my"]')
-        self.product_menu=self.login_page.driver.find_element(By.XPATH,'//li[@data-id="product"]')
-        self.username_showspan=self.login_page.driver.find_element(By.XPATH,'//span[@class="user-name"]')
 
-    def get_companyname(self): #获取公司名称
-        value=self.companyname_showbox.get_attribute('title')
-        logutils.info('获取公司名称：' + value)
-        return value
+class MainPage(BasePage):
+    def __init__(self,driver):
+        # super(LoginPage, self).__init__(self,driver)
+        super().__init__(driver)
+        elements=ElementDataUtils('main','main_page').get_element()
+        self.myzone_menu=elements['myzone_menu']
+        self.username_menu=elements['username_menu']
+        self.quit_button=elements['quit_button']
 
-    def goto_myzone(self):#进入我的地盘菜单
-        self.myzone_menu.click()
-        logutils.info('进入我的地盘菜单')
+    def goto_myzone(self):
+        self.click(self.myzone_menu)
 
-    def goto_product(self):#进入产品菜单
-        self.product_menu.click()
-        logutils.info('进入产品页面菜单')
+    def get_username(self):
+        return self.get_text(self.username_menu)
 
-    def get_username(self):#获取用户名
-        value=self.username_showspan.text
-        logutils.info('获取登录用户名：' + value)
-        return value
+    def click_username(self):
+        self.click(self.username_menu)
 
+    def click_quit(self):
+        self.click(self.quit_button)
 
 if __name__=='__main__':
-    main_page=MainPage()
-    companyname=main_page.get_companyname()
-    print(companyname)
-    username=main_page.get_username()
-    print(username)
-    #增加以下两句代码后出现了一个问题，
-    # 问题原因：目前版本的PO模式，是实例化页面对象之后，识别所有的元素，然后再去操作，可能发生元素不能识别
-    # main_page.goto_myzone()
-    # main_page.goto_product()
+    driver=Browser().get_driver()
+    # driver.get('http://47.107.178.45/zentao/www/index.php?m=user&f=login')
+    # driver.maximize_window()
+    # driver.implicitly_wait(5)
+    # main_page=LoginAction(driver).login_sucessful('test01','newdream123')
+    # value=main_page.get_username()
+    # print(value)
+
+

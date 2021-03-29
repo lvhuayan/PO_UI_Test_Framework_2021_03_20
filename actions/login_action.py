@@ -27,6 +27,7 @@ class LoginAction:
 
     def default_login(self):
         self.login_action(Config.get_username,Config.get_password)
+        return MainPage(self.login_page.driver)
 
     def login_by_cookie(self):
         pass
