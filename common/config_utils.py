@@ -26,6 +26,10 @@ class CongfigUtlis():
         return self.read_ini('default','log_path')
 
     @property
+    def get_log_level(self):
+        return int(self.read_ini('default','log_level'))
+
+    @property
     def get_webdriver_path(self):
         return self.read_ini('default','webdriver_path')
 
@@ -42,6 +46,10 @@ class CongfigUtlis():
         return self.read_ini('default','screenshot_path')
 
     @property
+    def get_log_path(self):
+        return self.read_ini('default','log_path')
+
+    @property
     def get_username(self):
         return self.read_ini('default','username')
 
@@ -53,8 +61,10 @@ class CongfigUtlis():
     def get_url(self):
         return self.read_ini('default','url')
 
+
+
 Config=CongfigUtlis()
 
 if __name__=='__main__':
     configutils=CongfigUtlis()
-    print(configutils.get_webdriver_path)
+    print(configutils.get_log_level)

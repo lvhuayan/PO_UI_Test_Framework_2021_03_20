@@ -6,28 +6,42 @@
 # @desc:
 import os
 import logging
+import time
+
+from common.config_utils import Config
 
 current_path=os.path.dirname(__file__)
-log_path=os.path.join(current_path,'../logs/test.log')
+log_path=os.path.join(current_path,'..',Config.get_log_path)
 
 class LogUtils:
-    def __init__(self,logfile_path=log_path):
-        self.logfile_path=logfile_path
-        self.logger=logging.getLogger('my_log')
-        self.logger.setLevel(level=logging.INFO)
-        self.file_log=logging.FileHandler(self.logfile_path)
-        fomatter = logging.Formatter('%(asctime)s-%(name)s-%(levelname)s-%(message)s')
-        self.file_log.setFormatter(fomatter)
-        self.logger.addHandler(self.file_log)
+    def __init__(self,logger=None):
+        self.log_name=os.path.join(log_path,'UITest_%s.log'%time.strftime('%Y_%m_%d'))
+        self.logger=logging.getLogger(logger)
+        self.logger.setLevel(Config.get_log_level)
 
-    def info(self,message):
-        self.logger.info(message)
+        self.fh=logging.FileHandler(self.log_name,'a',encoding='utf-8')
+        self.fh.setLevel(Config.get_log_level)
+        self.sh=logging.StreamHandler()
+        self.sh.setLevel(Config.get_log_level)
+        formatter = logging.Formatter('[%(asctime)s] %(filename)s->%(funcName)s line:%(lineno)d [%(levelname)s] : %(message)s')
+        self.fh.setFormatter(formatter)
+        self.sh.setFormatter(formatter)
+        self.logger.addHandler(self.fh)
+        self.logger.addHandler(self.sh)
+        self.fh.close()
+        self.sh.close()
 
-    def error(self,message):
-        self.logger.error(message)
-logutils=LogUtils()
+    def get_log(self):
+        return  self.logger
+
+    # def info(self,message):
+    #     self.logger.info(message)
+    #
+    # def error(self,message):
+    #     self.logger.error(message)
+
+logger=LogUtils().get_log()
 
 if __name__=='__main__':
-    logutils=LogUtils()
-    logutils.info('hello')
+    logger.info('hello')
 

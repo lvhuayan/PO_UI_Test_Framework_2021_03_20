@@ -8,7 +8,7 @@ import os
 from selenium import webdriver
 from common.base_page import BasePage
 from common.browser import Browser
-from common.element_data_utils import ElementDataUtils
+from common.element_data_utils_old import ElementDataUtils
 
 class LoginPage(BasePage):
     def __init__(self,driver):

@@ -7,19 +7,17 @@
 import os
 import xlrd
 from common.config_utils import Config
-from common.excel_utils import ExcelUtils
 
-# current_path=os.path.dirname(__file__)
-# excel_path=os.path.join(current_path,'../element_info_datas/element_infos.xls')
+current_path=os.path.dirname(__file__)
+excel_path=os.path.join(current_path,'../element_info_datas/element_infos.xls')
 
-#老师没有详细写 这是我自己写的
 class ElementDataUtils:
-    def __init__(self,modul_name,page_name,element_path=None):
-        excl_utils = ExcelUtils(modul_name)
-        self.element_path=excl_utils.excel_path
+    def __init__(self,modul_name,page_name,element_path=excel_path):
+        self.element_path=element_path
         self.page_name=page_name
-        self.sheet =excl_utils.sheet_data
-        self.nrow = excl_utils.get_row_count
+        self.workbook = xlrd.open_workbook(element_path)
+        self.sheet = self.workbook.sheet_by_name(modul_name)
+        self.nrow = self.sheet.nrows
 
     def get_element(self):
         element_infos = {}
