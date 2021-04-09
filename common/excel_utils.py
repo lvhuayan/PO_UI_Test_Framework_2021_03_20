@@ -6,6 +6,9 @@
 # @desc:
 import os
 import xlrd
+
+from common.config_utils import Config
+
 current_path=os.path.dirname(__file__)
 excel_file_path=os.path.join(current_path,'../element_info_datas/element_infos.xls')
 
@@ -47,11 +50,16 @@ class ExcelUtils:
         return all_excel_data
 
 if __name__=='__main__':
-    excl_utils=ExcelUtils('main')
-    print(excl_utils.get_clo_count)
-    print(excl_utils.get_row_count)
-    data=excl_utils.get_excel_data_by_list()
-    print(data)
+    # excl_utils=ExcelUtils('main')
+    # print(excl_utils.get_clo_count)
+    # print(excl_utils.get_row_count)
+    # data=excl_utils.get_excel_data_by_list()
+    # print(data)
+
+    current_path = os.path.dirname(__file__)
+    testdata_path = os.path.join(current_path,'..', Config.get_testdata_path)
+    excel_data = ExcelUtils('login_suite', testdata_path).get_excel_data_by_list()
+    print(excel_data)
 
 
 

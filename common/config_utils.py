@@ -61,6 +61,10 @@ class CongfigUtlis():
     def get_url(self):
         return self.read_ini('default','url')
 
+    @property
+    def get_testdata_path(self):
+        return self.read_ini('default','test_data_path')
+
 
 
 Config=CongfigUtlis()
