@@ -22,6 +22,7 @@ class LoginTest(SeleniumBaseCase):
 
     def test_login_success(self):
         test_function_data=self.test_class_data['test_login_success']
+        self._testMethodDoc=test_function_data['testName']
         login_action=LoginAction(self.base_page.driver)
         main_page=login_action.login_sucessful(test_function_data['test_parameter'].get('username'),test_function_data['test_parameter'].get('password'))
         actual_result=main_page.get_username()

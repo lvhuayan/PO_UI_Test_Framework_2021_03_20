@@ -65,10 +65,18 @@ class CongfigUtlis():
     def get_testdata_path(self):
         return self.read_ini('default','test_data_path')
 
+    @property
+    def get_case_path(self):
+        return self.read_ini('default','case_path')
+
+    @property
+    def get_report_path(self):
+        return self.read_ini('default','report_path')
+
 
 
 Config=CongfigUtlis()
 
 if __name__=='__main__':
     configutils=CongfigUtlis()
-    print(configutils.get_log_level)
+    print(configutils.get_report_path)

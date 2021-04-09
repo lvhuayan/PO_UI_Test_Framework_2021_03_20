@@ -5,7 +5,7 @@
 # @time: 2021/3/16 14:03
 # @desc:
 from selenium.webdriver.common.by import By
-from common.log_utils import logutils
+from common.log_utils import logger
 from element_infos.login.login_page import LoginPage
 
 class MainPage:
@@ -21,20 +21,20 @@ class MainPage:
 
     def get_companyname(self): #获取公司名称
         value=self.companyname_showbox.get_attribute('title')
-        logutils.info('获取公司名称：' + value)
+        logger.info('获取公司名称：' + value)
         return value
 
     def goto_myzone(self):#进入我的地盘菜单
         self.myzone_menu.click()
-        logutils.info('进入我的地盘菜单')
+        logger.info('进入我的地盘菜单')
 
     def goto_product(self):#进入产品菜单
         self.product_menu.click()
-        logutils.info('进入产品页面菜单')
+        logger.info('进入产品页面菜单')
 
     def get_username(self):#获取用户名
         value=self.username_showspan.text
-        logutils.info('获取登录用户名：' + value)
+        logger.info('获取登录用户名：' + value)
         return value
 
 

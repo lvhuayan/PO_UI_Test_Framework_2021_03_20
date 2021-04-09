@@ -10,19 +10,12 @@ from actions.quit_action import QuitAction
 from common.base_page import BasePage
 from common.browser import Browser
 from common.config_utils import Config
+from common.selenium_base_case import SeleniumBaseCase
 from element_infos.login.login_page import LoginPage
-from element_infos.main.main_page_old import MainPage
+from element_infos.main.main_page import MainPage
 
 
-class  QuitTest(unittest.TestCase):
-    def setUp(self) -> None:
-        self.base_page=BasePage(Browser().get_driver())
-        self.base_page.set_browser_max()
-        self.base_page.implicitly_wait()
-        self.base_page.open_url(Config.get_url)
-
-    def tearDown(self) -> None:
-        self.base_page.close_tab()
+class QuitTest(SeleniumBaseCase):
 
     def test_quit(self):
         login_action=LoginAction(self.base_page.driver)

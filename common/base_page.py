@@ -6,7 +6,6 @@
 # @desc:
 import os
 import time
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -15,6 +14,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
 from common.config_utils import Config
 from common.log_utils import logger
+from common import HTMLTestReportCN
 
 current_path=os.path.dirname(__file__)
 
@@ -190,8 +190,13 @@ class BasePage:
                 break
         logger.info('根据url切换句柄')
 
+    def screenshot_as_file(self):
+        report_path=os.path.join(os.path.dirname(__file__),'..',Config.get_report_path)
+        report_dir=HTMLTestReportCN.ReportDirectory(report_path)
+        report_dir.get_screenshot(self.driver)
+
     #截图功能封装
-    def screenshot_as_file(self,*screenshot_path):
+    def screenshot_as_file_old(self,*screenshot_path):
         if(len(screenshot_path)==0):
             screenshotfile_path=Config.get_screenshot_path
         else:
