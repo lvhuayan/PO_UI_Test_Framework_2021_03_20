@@ -33,7 +33,7 @@ class TestDataUtils:
             test_data_info = {}
             if self.excel_data[i][2]==self.test_class_name:
                 test_data_info['testName']=self.excel_data[i][1]
-                test_data_info['isNot']=self.excel_data[i][3]
+                test_data_info['isNot']=False if self.excel_data[i][3]=='是' else True
                 test_data_info['expectResult']=self.excel_data[i][4]
                 test_data_info['message']=self.excel_data[i][5]
                 test_parameter = {}
