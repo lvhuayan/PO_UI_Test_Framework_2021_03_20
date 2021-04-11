@@ -42,6 +42,10 @@ class CongfigUtlis():
         return float(self.read_ini('default','time_out'))
 
     @property
+    def get_element_info_path(self):
+        return self.read_ini('default','element_info_path')
+
+    @property
     def get_screenshot_path(self):
         return self.read_ini('default','screenshot_path')
 
@@ -73,10 +77,34 @@ class CongfigUtlis():
     def get_report_path(self):
         return self.read_ini('default','report_path')
 
+    @property
+    def get_smtp_server(self):
+        return self.read_ini('email','smtp_server')
+
+    @property
+    def get_smtp_sender(self):
+        return self.read_ini('email','smtp_sender')
+
+    @property
+    def get_smtp_senderpassword(self):
+        return self.read_ini('email','smtp_senderpassword')
+
+    @property
+    def get_smtp_receiver(self):
+        return self.read_ini('email','smtp_receiver')
+
+    @property
+    def get_smtp_cc(self):
+        return self.read_ini('email','smtp_cc')
+
+    @property
+    def get_smtp_subject(self):
+        return self.read_ini('email','smtp_subject')
+
 
 
 Config=CongfigUtlis()
 
 if __name__=='__main__':
     configutils=CongfigUtlis()
-    print(configutils.get_report_path)
+    print(configutils.get_element_info_path)

@@ -8,7 +8,7 @@ import os
 from selenium import webdriver
 from common.base_page import BasePage
 from common.browser import Browser
-from common.element_data_utils_old import ElementDataUtils
+from common.element_data_utils import ElementDataUtils
 
 #测试base_page中select下拉框方法是否封装正确
 current_path=os.path.dirname(__file__)

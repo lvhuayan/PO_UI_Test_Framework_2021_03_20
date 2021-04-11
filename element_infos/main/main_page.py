@@ -7,7 +7,7 @@
 # from actions.login_action import LoginAction
 from common.base_page import BasePage
 from common.browser import Browser
-from common.element_data_utils_old import ElementDataUtils
+from common.element_data_utils import ElementDataUtils
 
 
 class MainPage(BasePage):

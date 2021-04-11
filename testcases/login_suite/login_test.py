@@ -14,7 +14,7 @@ from common.test_data_utils import TestDataUtils
 
 
 class LoginTest(SeleniumBaseCase):
-    test_class_data=TestDataUtils('login_suite', 'LoginTest').conver_exceldata_to_testdata()
+    test_class_data=TestDataUtils('login_suite','login_test','LoginTest').conver_exceldata_to_testdata()
 
     def setUp(self) -> None:
         super().setUp()
